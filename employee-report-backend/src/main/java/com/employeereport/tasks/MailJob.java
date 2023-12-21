@@ -25,18 +25,14 @@ public class MailJob {
         this.formService = formService;
         this.mailService = mailService;
     }
-    //        @Scheduled(fixedDelay = "5s")
-    // */10 * * * * ?"
-    // 0 0 18 * * MON-FRI
+
 //    @Scheduled(cron = "0 0 18 * * MON-FRI")
+//    @Scheduled(cron = "*/2 * * * *")
     void execute(){
         List<User> userList = userService.getAllUsers();
         for(User user : userList ){
             Date date = Date.valueOf(LocalDate.now());
             Form form = formService.createForm(user.getId() , date);
-
-            // take the form_id
-            // add the form_id to the form submission link . ex: server.com/submitForm/formId
             String formLink = Constants.BASE_FRONTEND_URL + "/form/" + form.getId();
 
             mailService.sendMail(user.getFirstName() , user.getEmail() , date , formLink);

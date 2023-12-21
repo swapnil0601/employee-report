@@ -5,6 +5,7 @@ import com.employeereport.service.UserService;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.server.cors.CrossOrigin;
+import jakarta.inject.Inject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,9 +13,8 @@ import java.util.Map;
 
 @Controller("/api/v1/user")
 public class UserController {
-    private final UserService userService;
-
-    public UserController(UserService userService) {this.userService=userService;}
+    @Inject
+    UserService userService;
 
     @CrossOrigin("http://localhost:3000")
     @Post("/register")

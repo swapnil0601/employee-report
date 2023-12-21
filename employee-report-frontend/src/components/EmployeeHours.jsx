@@ -48,9 +48,7 @@ const EmployeeHours = () => {
   //     ],
   //   };
   const chartData = [
-    { employee: "John Doe", hours: 40 },
-    { employee: "Jane Smith", hours: 32 },
-    { employee: "Bob Johnson", hours: 45 },
+    { employee: "Swapnil Sahoo", hours: 17.5 },
     // Add more data as needed
   ];
 

@@ -8,6 +8,7 @@ import com.employeereport.utils.Constants;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.*;
 import io.micronaut.http.server.cors.CrossOrigin;
+import jakarta.inject.Inject;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,16 +16,13 @@ import java.util.*;
 
 @Controller("api/v1/form")
 public class FormController {
-    private final FormService formService;
-    private final ActivityService activityService;
+    @Inject
+    FormService formService;
+    @Inject
+    ActivityService activityService;
 
-    public FormController(FormService formService,ActivityService activityService)
-    {
-        this.formService=formService;
-        this.activityService=activityService;
-    }
+
     private Map<String , Object> formObjectToMap(Form form){
-        System.out.println("Object to Map" + form);
         Map<String , Object> map = new HashMap<>();
         map.put("formId" , form.getId());
         map.put("userId" , form.getUserId());

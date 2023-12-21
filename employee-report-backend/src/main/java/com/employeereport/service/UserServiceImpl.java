@@ -2,6 +2,7 @@ package com.employeereport.service;
 
 import com.employeereport.entity.User;
 import com.employeereport.repository.UserRepository;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -9,9 +10,8 @@ import java.util.List;
 
 @Singleton
 public class UserServiceImpl implements UserService{
-    private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository){this.userRepository=userRepository;}
+    @Inject
+    UserRepository userRepository;
 
     @Override
     public User register(User user){

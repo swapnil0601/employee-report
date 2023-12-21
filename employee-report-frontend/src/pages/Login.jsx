@@ -29,6 +29,9 @@ const LoginAdmin = () => {
         login({
           user: {
             role: "admin",
+            email:"swapnilsahoo100@gmail.com",
+            firstName:"Swapnil",
+            lastName:"Sahoo"
           },
         })
       );

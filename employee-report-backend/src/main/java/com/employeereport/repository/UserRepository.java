@@ -1,5 +1,6 @@
 package com.employeereport.repository;
 
+import com.employeereport.entity.Report;
 import com.employeereport.entity.User;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.data.annotation.Query;
@@ -14,4 +15,12 @@ public interface UserRepository extends CrudRepository<User,Integer> {
     @Query("SELECT u from User u where u.manager IS NULL")
     List<User> findByNoManager();
     List<User> findByManager(String manager);
+
+    @Query("SELECT u.id, SUM(a.minutes) / 60 " +
+            "FROM User u " +
+            "LEFT JOIN Form f ON u.id = f.userId " +
+            "LEFT JOIN Activity a ON f.id = a.formId " +
+            "GROUP BY u.id")
+    List<Object[]> getWorkingHourReport();
+
 }

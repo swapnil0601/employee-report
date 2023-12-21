@@ -31,28 +31,30 @@ public class MailServiceImpl implements MailService{
                     }
                 });
 
-        String htmlContent = "<html><body><p>Dear " + firstName + ", <br> Hope your day went well .<br>"+
-                "Please fill the following form to provide details about the tasks you did today (" + date + ") .  <br>" +
-                "<br>" + formLink + "<br>"+
-                "<br>Thank you,<br>"+
-                "Daily Work Report Team</p>"+
-                "</body></html>";
+        String htmlContent = "<html>\n" +
+                "<body>\n" +
+                "  <p>Dear "+firstName+",</p>\n" +
+                "\n" +
+                "  <p>We kindly request your participation in providing details regarding today's tasks, dated "+date+". Your input is invaluable in our efforts.</p>\n" +
+                "\n" +
+                "  <p>Please take a moment to complete the following form:</p>\n" +
+                "  \n" +
+                "  <p><a href=\""+formLink+"\">"+formLink+"</a></p>\n" +
+                "\n" +
+                "  <p>Thank you for your cooperation,</p>\n" +
+                "  <p>The Daily Work Report Team</p>\n" +
+                "</body>\n" +
+                "</html>";
 
         try {
         Message message = new MimeMessage(session);
-
         message.setFrom(new InternetAddress(from));
-
         message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(toEmail));
-
         message.setSubject("Daily work report");
-
         message.setContent(htmlContent, "text/html");
         Transport.send(message);
-
         System.out.println("Email has been sent successfully.");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
