@@ -14,7 +14,7 @@ public class MailServiceImpl implements MailService{
     String from = "awesomeback143@gmail.com";
     // DEV credentials
     final String username = "awesomeback143@gmail.com";
-    final String password = "rlxk mmcj auvz suwp";
+    final String password = "swasd asda adhasdhasjdhuw";
 
     String host = "smtp.gmail.com";
     @Override
